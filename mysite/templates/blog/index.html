@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h1>{% block title %}Blog{% endblock %}</h1>
-<p>Blog stuffffff</p>
+
+    <h2 class="title is-2">{% block title %}All Blog Posts{% endblock %}</h2>
+
+    {% if posts %}
+        <p class="subtitle">
+        Total: {{posts|length}} post{{posts|length|pluralize}}
+        </p>
+        <br>
+        
+        <div class="content">
+            {% for post in posts %}
+                <h4 class="title is-4">
+                    <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
+                </h4>
+                <p><strong>{{ post.pub_str }}</strong></p>
+                <p>{{ post.excerpt }}</p>
+                <br>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

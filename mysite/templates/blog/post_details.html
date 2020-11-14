@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load markdown_extras %}
+
+{% block body %}
+{% if post %}
+<div align="center">
+    <h1 class="title is-2">
+        {% block title %}{{post.title}}{% endblock %}
+    </h1>
+    <p>
+        <strong>Published: {{post.pub_str}}</strong>
+    </p>
+</div>
+
+<hr>
+<div>
+    <p>{{ post.content | markdown | safe }}</p>
+</div>
+<hr>
+
+<p><strong>{{ post.likes }} like{{post.likes|pluralize}}</strong></p>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1 class="title">{% block title %}Home{% endblock %}</h1>
+    <p class="subtitle">
+        Da Home :)
+    </p>
+    <br>
+    <a
+      class="button is-primary"
+      href="{% url 'blog:blog' %}">
+        Go to blog
+    </a>
+{% endblock %}
