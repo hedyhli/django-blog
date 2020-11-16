@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1 class="title">{% block title %}About{% endblock %}</h1>
+    <p class="subtitle">
+        This project is a Hello World blog made with Django.
+    </p>
+    <p>Enjoy! There's some stupid posts in there, be sure to press the like button.</p>
+    <br>
+    <a
+      class="button is-primary"
+      href="{% url 'blog:blog' %}">
+        Go to blog
+    </a>
+{% endblock %}

@@ -19,6 +19,12 @@
 <hr>
 
 <p><strong>{{ post.likes }} like{{post.likes|pluralize}}</strong></p>
+<!-- like button :) -->
+<form action="{% url 'blog:like' post.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" value="like" class="button is-primary is-small">Like this post</button>
+</form>
+<a class="button is-small" href="{% url 'blog:blog' %}">Back to blog</a>
 
 {% endif %}
 {% endblock %}

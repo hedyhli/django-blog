@@ -9,16 +9,15 @@
         Total: {{posts|length}} post{{posts|length|pluralize}}
         </p>
         <br>
-        
-        <div class="content">
-            {% for post in posts %}
-                <h4 class="title is-4">
-                    <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
-                </h4>
-                <p><strong>{{ post.pub_str }}</strong></p>
-                <p>{{ post.excerpt }}</p>
-                <br>
-            {% endfor %}
-        </div>
+
+        {% for post in posts %}
+            <h4 class="title is-4">
+                <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
+            </h4>
+            <p><strong>{{ post.pub_str }}</strong></p>
+            <p>{{ post.excerpt }}</p>
+            <br>
+        {% endfor %}
+
     {% endif %}
 {% endblock %}

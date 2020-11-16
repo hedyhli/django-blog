@@ -8,8 +8,6 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='blog'),
     # /blog/post/1
     path('post/<int:pk>/', views.PostDetailsView.as_view(), name="post"),
-    # /authors/
-    # path('authors/', views.authors),
-    # /author/1
-    # path('author/<int:user_id>', views.author_details)
+    # liking a post
+    path('post/<int:pk>/like', views.like, name='like')
 ]

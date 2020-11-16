@@ -1,5 +1,8 @@
 from django.views import generic
-# from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.db.models import F
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Post
 
@@ -17,3 +20,10 @@ class PostDetailsView(generic.DetailView):
     template_name = "blog/post_details.html"
 
 # TODO: increment `views`
+
+
+def like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.likes = F("likes") + 1
+    post.save()
+    return HttpResponseRedirect(reverse('blog:post', args=(post.id,)))

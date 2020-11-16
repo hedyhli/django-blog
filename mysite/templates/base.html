@@ -6,64 +6,77 @@
   <title>
     mysite - {% block title %}{% endblock %}
   </title>
+  <style type="text/css" media="screen">
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+ 
+      #wrapper {
+        flex: 1;
+      }
+    </style>
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item"
-        href="{% url 'index' %}">
-            <strong>MySite</strong>
-        </a>
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="myNav">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item"
+            href="{% url 'index' %}">
+                <strong>MySite</strong>
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="myNav">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-    <div id="myNav" class="navbar-menu">
-        <div class="navbar-start"></div>
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <a href="{% url 'blog:blog' %}">Blog</a>
-            </div>
-            <div class="navbar-item">
-                <a>About</a>
+        <div id="myNav" class="navbar-menu">
+            <div class="navbar-start"></div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="{% url 'blog:blog' %}">Blog</a>
+                </div>
+                <div class="navbar-item">
+                    <a href="{% url 'about' %}">About</a>
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Get all "navbar-burger" elements
-            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Get all "navbar-burger" elements
+                const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-            // Check if there are any navbar burgers
-            if ($navbarBurgers.length > 0) {
-                // Add a click event on each of them
-                $navbarBurgers.forEach( el => {
-                    el.addEventListener('click', () => {
-                        // Get the target from the "data-target" attribute
-                        const target = el.dataset.target;
-                        const $target = document.getElementById(target);
+                // Check if there are any navbar burgers
+                if ($navbarBurgers.length > 0) {
+                    // Add a click event on each of them
+                    $navbarBurgers.forEach( el => {
+                        el.addEventListener('click', () => {
+                            // Get the target from the "data-target" attribute
+                            const target = el.dataset.target;
+                            const $target = document.getElementById(target);
 
-                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                        el.classList.toggle('is-active');
-                        $target.classList.toggle('is-active');
+                            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                            el.classList.toggle('is-active');
+                            $target.classList.toggle('is-active');
+                        });
                     });
-                });
-            }
-        });
-    </script>
-    </nav>
-    <section class="section">
-        <div class="container">  
-            <div class="content">
-                {% block body %}{% endblock %}
+                }
+            });
+        </script>
+        </nav>
+        <div id="wrapper">
+        <!-- Wrapper is used so that flexbox makes footer sticky -->
+        <section class="section">
+            <div class="container">  
+                <div class="content">
+                    {% block body %}{% endblock %}
+                </div>
             </div>
-        </div>
-    </section>
-  
-    <footer class="footer">
+        </section>
+    </div>
+    <footer class="footer has-text-centered">
         <p>
             Django hello world blog. Made by <strong>Hedy Li</strong>
         </p>
