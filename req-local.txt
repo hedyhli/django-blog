@@ -1,3 +1,4 @@
+#beautifulsoup4
 django
 django-simple-bulma
 django-heroku

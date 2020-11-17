@@ -1,0 +1,2 @@
+tasks:
+- command: brew tap heroku/brew && brew install heroku && readlink -f `which heroku`
