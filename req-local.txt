@@ -2,3 +2,4 @@ django
 django-simple-bulma
 django-heroku
 markdown
+pygments

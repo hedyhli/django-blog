@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load markdown_extras %}
 
+{% load static %}
+{% block head %}
+    <link href="{% static 'css/highlight.css' %}" rel="stylesheet"
+          type="text/css" media="screen">
+{% endblock %}
+
 {% block body %}
 {% if post %}
 <div align="center">

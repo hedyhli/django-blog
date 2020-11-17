@@ -123,6 +123,10 @@ STATIC_URL = '/static/'
 ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = '*'
 
+STATICFILES_DIRS = [
+    BASE_DIR + "/mysite/static/",
+]
+
 STATICFILES_FINDERS = [
   # First add the two default Finders, since this will overwrite the default.
   'django.contrib.staticfiles.finders.FileSystemFinder',
