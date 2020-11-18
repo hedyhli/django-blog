@@ -7,6 +7,7 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(MarkdownxModelAdmin):
-    list_display = ('title', 'pub_date')
+    fields = ('title', 'pub_date', 'content',)
+    list_display = ('title', 'pub_str', 'likes')
     list_filter = ('pub_date',)
-    search_fields = ('title',)
+    search_fields = ('title', 'content')

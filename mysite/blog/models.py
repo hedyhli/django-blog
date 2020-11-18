@@ -24,10 +24,10 @@ class Post(models.Model):
         return markdownify(self.content)
 
 
-    @property
     def pub_str(self):
         """Publication date as formatted string"""
         return self.pub_date.strftime("%-d %b %Y")
+    pub_str.short_description = "Published"
 
     def __str__(self):
         return self.title
