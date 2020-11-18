@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+# Usage:
+#   pygmz <theme>
+
+echo Generating CSS for $@...
+pygmentize -S $@ -f html -a .codehilite > mysite/static/css/highlight.css
+echo Running collectstatic
+python3 manage.py collectstatic --no-input | tail -n 1
+echo Done.

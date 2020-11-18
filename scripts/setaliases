@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+alias 'm=python3 manage.py'
+alias 'dja=django-admin'
+alias 'start=m runserver'
+alias 'cstatic=m collectstatic --no-input'
