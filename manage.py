@@ -3,6 +3,9 @@
 import os
 import sys
 
+from dotenv import load_dotenv
+load_dotenv()
+
 ALLOWED_HOSTS = ['*']
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')

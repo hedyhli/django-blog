@@ -4,3 +4,4 @@ django-simple-bulma
 django-heroku
 django-markdownx
 pygments
+python-dotenv
