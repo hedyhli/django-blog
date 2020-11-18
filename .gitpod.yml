@@ -1,8 +1,10 @@
 tasks:
 - command: 'brew tap heroku/brew && brew install heroku &&
-  echo -----Heroku installation finished----- &&
+  echo Brew Heroku installation finished &&
   echo Updating heroku executable code... &&
   herpath=$(readlink -f `which heroku`) &&
   sed -i ''s/\"\$NODE\"\ \"/node\ \"/'' $herpath &&
-  echo All done &&
-  echo enjoy using Heroku CLI on GitPod :D'
+  echo Done &&
+  echo Settings aliases... &&
+  source scripts/setaliases &&
+  echo Done'
