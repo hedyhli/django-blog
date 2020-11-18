@@ -15,7 +15,7 @@
                 <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
             </h4>
             <p><strong>{{ post.pub_str }}</strong></p>
-            <p>{{ post.excerpt }}</p>
+            <p>{{ post.excerpt|striptags }}</p>
             <br>
         {% endfor %}
 

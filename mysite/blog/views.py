@@ -6,9 +6,6 @@ from django.urls import reverse
 
 from .models import Post
 
-from sync_blog import sync_db, load_content
-sync_db(load_content())
-
 
 class IndexView(generic.ListView):
     template_name = "blog/index.html"

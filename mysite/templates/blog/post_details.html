@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load markdown_extras %}
 
 {% load static %}
 {% block head %}
@@ -20,7 +19,7 @@
 
 <hr>
 <div>
-    <p>{{ post.content | markdown | safe }}</p>
+    <p>{{ post.html | safe }}</p>
 </div>
 <hr>
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_simple_bulma',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -143,6 +144,8 @@ BULMA_SETTINGS = {
         "family-sans-serif": "\"Ubuntu\", sans-serif",
     }
 }
+
+MARKDOWNX_MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite']
 
 # Configure Django App for Heroku.
 import django_heroku

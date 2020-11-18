@@ -1,10 +1,13 @@
 from django.db import models
 
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     pub_date = models.DateTimeField('date published')
-    content = models.TextField()
+    content = MarkdownxField()
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
 
@@ -13,8 +16,14 @@ class Post(models.Model):
         """Fetch first 500 characters of content"""
         excerpt = self.content[:500]
         excerpt += "..." if len(self.content) > 500 else ""
-        return excerpt
-    
+        return markdownify(excerpt)
+
+    @property
+    def html(self):
+        """Parsed markdown in HTML form"""
+        return markdownify(self.content)
+
+
     @property
     def pub_str(self):
         """Publication date as formatted string"""
