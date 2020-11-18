@@ -150,5 +150,5 @@ BULMA_SETTINGS = {
 MARKDOWNX_MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite']
 
 # Configure Django App for Heroku.
-# import django_heroku
-# django_heroku.settings(locals())
+import django_heroku
+django_heroku.settings(locals())
