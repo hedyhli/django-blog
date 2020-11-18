@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b#s*_o(3t3ai_k(c5po@h7a=nj5#vjkd3u7ckhnx@)mi=8fn67'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -125,7 +125,7 @@ ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = '*'
 
 STATICFILES_DIRS = [
-    BASE_DIR + "/mysite/static/",
+    os.path.join(BASE_DIR, "mysite", "static"),
 ]
 
 STATICFILES_FINDERS = [
@@ -145,6 +145,7 @@ BULMA_SETTINGS = {
     }
 }
 
+# markdown
 MARKDOWNX_MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite']
 
 # Configure Django App for Heroku.
