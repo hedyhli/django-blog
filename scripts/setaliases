@@ -2,5 +2,5 @@
 
 alias 'm=python3 manage.py'
 alias 'dja=django-admin'
-alias 'start=m runserver'
+alias 'run=m runserver'
 alias 'cstatic=m collectstatic --no-input | tail -n 1'

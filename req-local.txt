@@ -1,7 +1,7 @@
 #beautifulsoup4
 django
+django-environ
 django-simple-bulma
 django-heroku
 django-markdownx
 pygments
-python-dotenv
