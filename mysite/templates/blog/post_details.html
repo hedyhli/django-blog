@@ -4,6 +4,13 @@
 {% block head %}
     <link href="{% static 'css/highlight.css' %}" rel="stylesheet"
           type="text/css" media="screen">
+    <style type="text/css" media="screen">
+        .column.auto-width{
+            width: auto;
+            /* flex-grow: 1;
+            flex-shrink: 1; */
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -27,7 +34,7 @@
 <hr>
 
 <div class="columns">
-    <div class="column is-1">
+    <div class="column is-1 auto-width">
         <p><strong>
             {{ post.likes }} like{{post.likes|pluralize}}
         </strong></p>
@@ -36,24 +43,25 @@
         <div class="columns is-mobile">
             <div class="column is-1">
                 <a
-                href="#"
-                class="button is-primary is-outlined is-small"
-                onclick="document.getElementById('like').submit();">
+                  class="button is-primary is-outlined is-small"
+                  onclick="document.getElementById('like').submit();">
                     Like this post
                 </a>
             </div>
             <div class="column"></div>            
-            <div class="column is-1">
-                {% if is_admin %}
-                    <a
-                      class="button is-outlined is-small"
-                      href="{% url 'admin:blog_post_change' post.id %}">
-                        Edit
+            <div class="column auto-width">
+                <div class="is-pulled-right" align="right">
+                    {% if is_admin %}
+                        <a
+                        class="button is-outlined is-small"
+                        href="{% url 'admin:blog_post_change' post.id %}">
+                            Edit
+                        </a>
+                    {% endif %}
+                    <a class="button is-outlined is-small" href="{% url 'blog:blog' %}">
+                        Back to blog
                     </a>
-                {% endif %}
-                <a class="button is-outlined is-small is-pulled-right" href="{% url 'blog:blog' %}">
-                Back to blog
-                </a>
+                </div>
             </div>
         </div>
     </div>

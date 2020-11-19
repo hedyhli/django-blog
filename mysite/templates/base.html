@@ -42,6 +42,15 @@
                 <div class="navbar-item">
                     <a href="{% url 'about' %}">About</a>
                 </div>
+                {% if is_admin %}
+                <div class="navbar-item">
+                    <a href="{% url 'admin:blog_post_changelist' %}">Admin</a>
+                </div>
+                {% else %}
+                <div class="navbar-item">
+                    <a href="{% url 'admin' %}">Admin? Login</a>
+                </div>
+                {% endif %}
             </div>
         </div>
         <script>
