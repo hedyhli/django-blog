@@ -14,12 +14,28 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Post.objects.all().order_by('-pub_date')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['is_admin'] = user.is_staff or user.is_superuser
+        return context
+
 
 class PostDetailsView(generic.DetailView):
     model = Post
     template_name = "blog/post_details.html"
 
-# TODO: increment `views`
+    def get(self, *args, **kwargs):
+        post = Post.objects.get(pk=kwargs['pk'])
+        post.views = F('views') + 1
+        post.save()
+        return super().get(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['is_admin'] = user.is_staff or user.is_superuser
+        return context
 
 
 def like(request, pk):

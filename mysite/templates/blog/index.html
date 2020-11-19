@@ -14,7 +14,15 @@
             <h4 class="title is-4">
                 <a href="{% url 'blog:post' post.id %}">{{ post.title }}</a>
             </h4>
-            <p><strong>{{ post.pub_str }}</strong></p>
+            <p>
+                <strong>{{ post.pub_str }}</strong>
+                {% if is_admin %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>
+                        {{ post.views }} view{{ post.views | pluralize }}
+                    </strong>
+                {% endif %}
+            </p>
             <p>{{ post.excerpt|striptags }}</p>
             <br>
         {% endfor %}

@@ -15,6 +15,9 @@
     <p>
         <strong>Published: {{post.pub_str}}</strong>
     </p>
+    {% if is_admin %}
+        <p>{{ post.views }} view{{ post.views | pluralize }}</p>
+    {% endif %}
 </div>
 
 <hr>
@@ -34,13 +37,20 @@
             <div class="column is-1">
                 <a
                 href="#"
-                class="button is-primary is-outlined is-small is-pulled-left"
+                class="button is-primary is-outlined is-small"
                 onclick="document.getElementById('like').submit();">
                     Like this post
                 </a>
             </div>
-            <div class="column"></div>
+            <div class="column"></div>            
             <div class="column is-1">
+                {% if is_admin %}
+                    <a
+                      class="button is-outlined is-small"
+                      href="{% url 'admin:blog_post_change' post.id %}">
+                        Edit
+                    </a>
+                {% endif %}
                 <a class="button is-outlined is-small is-pulled-right" href="{% url 'blog:blog' %}">
                 Back to blog
                 </a>
