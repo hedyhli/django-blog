@@ -23,13 +23,34 @@
 </div>
 <hr>
 
-<p><strong>{{ post.likes }} like{{post.likes|pluralize}}</strong></p>
-<!-- like button :) -->
-<form action="{% url 'blog:like' post.id %}" method="post">
-    {% csrf_token %}
-    <button type="submit" value="like" class="button is-primary is-small">Like this post</button>
-</form>
-<a class="button is-small" href="{% url 'blog:blog' %}">Back to blog</a>
+<div class="columns">
+    <div class="column is-1">
+        <p><strong>
+            {{ post.likes }} like{{post.likes|pluralize}}
+        </strong></p>
+    </div>
+    <div class="column">
+        <div class="columns is-mobile">
+            <div class="column is-1">
+                <a
+                href="#"
+                class="button is-primary is-outlined is-small is-pulled-left"
+                onclick="document.getElementById('like').submit();">
+                    Like this post
+                </a>
+            </div>
+            <div class="column"></div>
+            <div class="column is-1">
+                <a class="button is-outlined is-small is-pulled-right" href="{% url 'blog:blog' %}">
+                Back to blog
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
+<form id="like" action="{% url 'blog:like' post.id %}" method="post">
+    {% csrf_token %}
+</form>
 {% endif %}
 {% endblock %}

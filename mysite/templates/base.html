@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item"
             href="{% url 'index' %}">
@@ -66,16 +66,16 @@
                 }
             });
         </script>
-        </nav>
-        <div id="wrapper">
-        <!-- Wrapper is used so that flexbox makes footer sticky -->
-        <section class="section">
-            <div class="container">  
-                <div class="content">
-                    {% block body %}{% endblock %}
-                </div>
+    </nav>
+    <div id="wrapper">
+    <!-- Wrapper is used so that flexbox makes footer sticky -->
+    <section class="section">
+        <div class="container">  
+            <div class="content">
+                {% block body %}{% endblock %}
             </div>
-        </section>
+        </div>
+    </section>
     </div>
     <footer class="footer has-text-centered">
         <p>
