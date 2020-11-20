@@ -9,5 +9,7 @@ urlpatterns = [
     # /blog/post/1
     path('post/<int:pk>/', views.PostDetailsView.as_view(), name="post"),
     # liking a post
-    path('post/<int:pk>/like', views.like, name='like')
+    path('post/<int:pk>/like', views.like, name='like'),
+    # liking a post
+    path('post/<int:pk>/unlike', views.unlike, name='unlike'),
 ]

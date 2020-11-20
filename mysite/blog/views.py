@@ -35,14 +35,26 @@ class PostDetailsView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context['is_admin'] = user.is_staff or user.is_superuser
+        context['liked'] = self.request.session.get('liked', False)
         return context
 
 
 def like(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    post.likes = F("likes") + 1
-    post.save()
+    if not request.session.get('liked', False):
+        post.likes = F("likes") + 1
+        post.save()
+        request.session['liked'] = True
+    # TODO: record 'liked' by each post
     return HttpResponseRedirect(reverse('blog:post', args=(post.id,)))
 
-# def index(request):
-#     return "hi"
+
+
+def unlike(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.session.get('liked', False):
+        if post.likes > 0:
+            post.likes = F("likes") - 1
+            post.save()
+            request.session['liked'] = False
+    return HttpResponseRedirect(reverse('blog:post', args=(post.id,)))

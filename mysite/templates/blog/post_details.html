@@ -42,11 +42,19 @@
     <div class="column">
         <div class="columns is-mobile">
             <div class="column is-1">
-                <a
-                  class="button is-primary is-outlined is-small"
-                  onclick="document.getElementById('like').submit();">
-                    Like this post
-                </a>
+                {% if liked %}
+                    <a
+                    class="button is-primary is-outlined is-small"
+                    onclick="document.getElementById('unlike').submit();">
+                        Unlike
+                    </a>
+                {% else %}
+                    <a
+                    class="button is-primary is-outlined is-small"
+                    onclick="document.getElementById('like').submit();">
+                        Like this post
+                    </a>
+                {% endif %}
             </div>
             <div class="column"></div>            
             <div class="column auto-width">
@@ -68,6 +76,9 @@
 </div>
 
 <form id="like" action="{% url 'blog:like' post.id %}" method="post">
+    {% csrf_token %}
+</form>
+<form id="unlike" action="{% url 'blog:unlike' post.id %}" method="post">
     {% csrf_token %}
 </form>
 {% endif %}
