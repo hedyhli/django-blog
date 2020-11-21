@@ -35,26 +35,30 @@ class PostDetailsView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context['is_admin'] = user.is_staff or user.is_superuser
-        context['liked'] = self.request.session.get('liked', False)
+        context['liked'] = context['post'].id in self.request.session.get('liked', [])
+        print(self.request.session.get('liked', []))
         return context
 
 
 def like(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if not request.session.get('liked', False):
+    if not (pk in request.session.get('liked', [])):
         post.likes = F("likes") + 1
         post.save()
-        request.session['liked'] = True
-    # TODO: record 'liked' by each post
+        if not request.session.get('liked', []):
+            request.session['liked'] = []
+        request.session['liked'].append(pk)
+    # TODO: record 'liked' by each post (not finished)
     return HttpResponseRedirect(reverse('blog:post', args=(post.id,)))
 
 
 
 def unlike(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if request.session.get('liked', False):
+    if pk in request.session.get('liked', []):
         if post.likes > 0:
             post.likes = F("likes") - 1
             post.save()
-            request.session['liked'] = False
+            print(request.session['liked'].index(pk))
+            del request.session['liked'][request.session['liked'].index(pk)]
     return HttpResponseRedirect(reverse('blog:post', args=(post.id,)))
